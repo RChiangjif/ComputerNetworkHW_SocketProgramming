@@ -63,12 +63,15 @@ while wins < 3:
     
     # 發送結果
     response = f"Server: {server_choice} | Result: {client_result}"
+    if wins == 3:
+        response += " | Game Over!"
     client_socket.sendall(response.encode('utf-8'))
     
     round_num += 1
+    
+    if wins == 3:
+        break
 
-# 遊戲結束
-client_socket.sendall(b"Game Over!")
 print(f"遊戲結束！{username} 贏得3次")
 
 client_socket.close()
