@@ -47,19 +47,19 @@ while wins < 3:
     
     # 判斷勝負
     if client_choice == server_choice:
-        result = 'draw'
+        server_result = 'draw'
         client_result = 'draw'
     elif (client_choice == 'rock' and server_choice == 'scissors') or \
          (client_choice == 'paper' and server_choice == 'rock') or \
          (client_choice == 'scissors' and server_choice == 'paper'):
-        result = 'win'
+        server_result = 'lose'
         client_result = 'client win'
         wins += 1
     else:
-        result = 'lose'
+        server_result = 'win'
         client_result = 'client lose'
     
-    print(f"第{round_num}回合: {client_choice} vs {server_choice} -> server {result}")
+    print(f"第{round_num}回合: {client_choice} vs {server_choice} -> server {server_result}")
     
     # 發送結果
     response = f"Server: {server_choice} | Result: {client_result}"
