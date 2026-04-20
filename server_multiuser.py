@@ -69,7 +69,16 @@ for round_num in range(1, 4):
         print(f"{usernames[0]}: {c0}, {usernames[1]}: {c1} -> {usernames[1]} 得1分")
     
     # 發送回合結果
-    result_msg = f"第{round_num}回合結束\n{usernames[0]}: {scores[usernames[0]]}, {usernames[1]}: {scores[usernames[1]]}"
+    if c0 == c1:
+        result_str = "draw"
+    elif (c0 == 'rock' and c1 == 'scissors') or \
+         (c0 == 'paper' and c1 == 'rock') or \
+         (c0 == 'scissors' and c1 == 'paper'):
+        result_str = f"{usernames[0]} win"
+    else:
+        result_str = f"{usernames[1]} win"
+    
+    result_msg = f"{usernames[0]}: {c0} | {usernames[1]}: {c1} | Result: {result_str}"
     for i in range(2):
         clients[i].sendall(result_msg.encode('utf-8'))
 
